@@ -1,0 +1,227 @@
+<head>
+    <style>
+        body {
+            display: grid;
+            grid-template-columns: auto auto;
+        }
+
+        header {
+            font-size: 35px;
+        }
+
+        p {
+            font-size: 20px;
+        }
+
+        code {
+            font-size: 15px;
+            color: #990000;
+            background-color: #E8E8E8;
+        }
+
+        .example {
+            background-color: #CCFFCC;
+            padding: 15px;
+        }
+
+        @media (min-width:770px) {
+            nav {
+                background-color: #E8E8E8;
+                font-size: 20px;
+                grid-column: 1/2;
+                width: auto;
+                position: fixed;
+                padding: 20px;
+            }
+        }
+
+        main {
+            grid-column: 2/3;
+            padding-left: 300px;
+            padding-top: 15px;
+
+        }
+
+        nav a {
+            color: #006699;
+        }
+
+        nav header {
+            font-size: 25px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <main id="main-doc">
+        <section id="Introduction_to_Python" class="main-section">
+            <header>
+                Introduction to Python
+            </header>
+            <p>
+                Python is simple to use, but it is a real programming language, offering much more structure and support
+                for large programs than shell scripts or batch files can offer. On the other hand, Python also offers
+                much more error checking than C, and, being a very-high-level language, it has high-level data types
+                built in, such as flexible arrays and dictionaries. Because of its more general data types Python is
+                applicable to a much larger problem domain than Awk or even Perl, yet many things are at least as easy
+                in Python as in those languages.
+            </p>
+            <p>
+                By the way, the language is named after the BBC show “Monty Python’s Flying Circus” and has nothing to
+                do with reptiles. Making references to Monty Python skits in documentation is not only allowed, it is
+                encouraged!
+            </p>
+        </section>
+
+        <section id="Python_as_a_Calculator" class="main-section">
+            <header>
+                Python as a Calculator
+            </header>
+            <p>
+                The interpreter acts as a simple calculator: you can type an expression at it and it will write the
+                value. Expression syntax is straightforward: the operators <code>+</code>, <code>-</code>,
+                <code>*</code> and <code>/</code> work just like in most other languages (for example, Pascal or C);
+                parentheses (()) can be used for grouping. For example:
+            </p>
+            <div class="example">
+                >>> 2 + 2 <br>
+                4<br>
+                >>> 50 - 5*6<br>
+                20<br>
+                >>> (50 - 5*6) / 4<br>
+                5.0 <br>
+                >>> 8 / 5 # division always returns a floating point number<br>
+                1.6
+            </div>
+        </section>
+        <br>
+        <section id="Defining_Functions" class="main-section">
+            <header>
+                Defining Functions
+            </header>
+            <p>
+                We can create a function that writes the Fibonacci series to an arbitrary boundary:
+            </p>
+            <div class="example">
+                >>> def fib(n): # write Fibonacci series up to n <br>
+                ... """Print a Fibonacci series up to n.""" <br>
+                ... a, b = 0, 1 <br>
+                ... while a < n: <br>
+                    ... print(a, end=' ') <br>
+                    ... a, b = b, a+b <br>
+                    ... print() <br>
+                    ... <br>
+                    >>> # Now call the function we just defined: <br>
+                    ... fib(2000) <br>
+                    0 1 1 2 3 5 8 13 21 34 55 89 144 233 377 610 987 1597
+            </div>
+            <p>
+                The keyword <code>def</code> introduces a function definition. It must be followed by the function name
+                and the parenthesized list of formal parameters. The statements that form the body of the function start
+                at the next line, and must be indented.
+            </p>
+            <p>
+                The actual parameters (arguments) to a function call are introduced in the local symbol table of the
+                called function when it is called; thus, arguments are passed using call by value (where the value is
+                always an object reference, not the value of the object). When a function calls another function, a new
+                local symbol table is created for that call.
+            </p>
+        </section>
+
+        <section id="Data_Structures" class="main-section">
+            <header>
+                Data Structures
+            </header>
+            <p>
+                Some data structures in Python include:
+            <ul>
+                <li>lists</li>
+                <li>sets</li>
+                <li>dictionaries</li>
+            </ul>
+
+            <p>
+                An example that uses most of the list methods:
+            </p>
+            <div class="example">
+                >>> fruits = ['orange', 'apple', 'pear', 'banana', 'kiwi', 'apple', 'banana'] <br>
+                >>> fruits.count('apple') <br>
+                2 <br>
+                >>> fruits.count('tangerine') <br>
+                0 <br>
+                >>> fruits.index('banana') <br>
+                3 <br>
+                >>> fruits.index('banana', 4) # Find next banana starting a position 4 <br>
+                6 <br>
+                >>> fruits.reverse() <br>
+                >>> fruits <br>
+                ['banana', 'apple', 'kiwi', 'banana', 'pear', 'apple', 'orange'] <br>
+                >>> fruits.append('grape') <br>
+                >>> fruits <br>
+                ['banana', 'apple', 'kiwi', 'banana', 'pear', 'apple', 'orange', 'grape'] <br>
+                >>> fruits.sort() <br>
+                >>> fruits <br>
+                ['apple', 'apple', 'banana', 'banana', 'grape', 'kiwi', 'orange', 'pear'] <br>
+                >>> fruits.pop() <br>
+                'pear'
+            </div>
+
+            <p>You might have noticed that methods like <code>insert</code>, <code>remove</code> or <code>sort</code>
+                that only modify the list have no return value printed – they return the default <code>None</code>. This
+                is a design principle for all mutable data structures in Python.
+            </p>
+            <p>
+                Another thing you might notice is that not all data can be sorted or compared. For instance,
+                <code>[None, 'hello', 10]</code> doesn’t sort because integers can’t be compared to strings and None
+                can’t be compared to other types. Also, there are some types that don’t have a defined ordering
+                relation. For example, <code>3+4j < 5+7j</code> isn’t a valid comparison.
+            </p>
+        </section>
+
+        <section id="Errors_and_Exceptions" class="main-section">
+            <header>
+                Errors and Exceptions
+            </header>
+            <p>
+                Until now error messages haven’t been more than mentioned, but if you have tried out the examples you
+                have probably seen some. There are (at least) two distinguishable kinds of errors:
+            <ul>
+                <li>syntax errors</li>
+                <li>exceptions</li>
+            </ul>
+            </p>
+            <p>
+            </p>
+        </section>
+
+        <section id="Reference" class="main-section">
+            <header>
+                Reference
+            </header>
+            <p> All of the information on this page was derived directly from the following&nbsp <a target=”_blank”
+                    href="https://docs.python.org/3/tutorial/">website.</a>
+        </section>
+    </main>
+
+    <nav id="navbar">
+        <header>
+            Python Documentation
+        </header>
+        <br>
+        <a class="nav-link" href="#Introduction_to_Python">Introduction to Python</a>
+        <br><br>
+        <a class="nav-link" href="#Python_as_a_Calculator">Python as a Calculator</a>
+        <br><br>
+        <a class="nav-link" href="#Defining_Functions">Defining Functions</a>
+        <br><br>
+        <a class="nav-link" href="#Data_Structures">Data Structures</a>
+        <br><br>
+        <a class="nav-link" href="#Errors_and_Exceptions">Errors and Exceptions</a>
+        <br><br>
+        <a class="nav-link" href="#Reference">Reference</a>
+    </nav>
+
+    <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"> </script>
+
+</body>
